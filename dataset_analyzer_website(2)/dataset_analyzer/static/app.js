@@ -101,19 +101,27 @@ function renderTargetSuggestions(data) {
 
     if (!section || !select || !list) return;
 
-    const suggestions = data.target_suggestions || [];
+    // All suggestions for the dropdown
+    const allSuggestions = data.target_suggestions || [];
+
+    // Only the top 5 suggestions for the displayed cards
+    const topSuggestions = allSuggestions.slice(0, 5);
 
     section.style.display = "block";
     select.innerHTML = '<option value="">No target selected</option>';
     list.innerHTML = "";
 
-    suggestions.forEach((item) => {
+    // Populate dropdown with ALL suggestions
+    allSuggestions.forEach((item) => {
         const option = document.createElement("option");
         option.value = item.column;
         option.textContent =
             `${item.column} — ${item.unique_values} unique values`;
         select.appendChild(option);
+    });
 
+    // Display only the TOP 5 suggestion cards
+    topSuggestions.forEach((item) => {
         const card = document.createElement("div");
         card.className = "target-suggestion";
 
@@ -124,11 +132,7 @@ function renderTargetSuggestions(data) {
         details.textContent =
             `Score: ${item.score} | Unique values: ${item.unique_values}`;
 
-        const examples = document.createElement("p");
-        /*examples.textContent =
-            "Examples: " + (item.examples || []).join(", ");*/
-
-        card.append(title, details, examples);
+        card.append(title, details);
         list.appendChild(card);
     });
 }
