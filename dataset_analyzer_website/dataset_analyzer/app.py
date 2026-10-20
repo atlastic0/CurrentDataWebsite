@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 import numpy as np
-from rapidfuzz import fuzz
 from io import StringIO, BytesIO
 
 app = Flask(__name__)
