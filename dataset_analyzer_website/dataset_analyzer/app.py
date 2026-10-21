@@ -139,7 +139,6 @@ def analyze_csv(file_bytes):
       #  for k, v in row.items()}
        #for row in preview_df.to_dict(orient="records")
     #}
-#start gpt
     recommendations = []
 
     # NEW: Check for missing values
@@ -249,7 +248,6 @@ def analyze_csv(file_bytes):
                 "data-quality problems were detected."
             )
         })
-#end gpt
     
 
 
